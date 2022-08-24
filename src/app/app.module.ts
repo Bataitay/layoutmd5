@@ -10,6 +10,10 @@ import { SideBarComponent } from './main/side-bar/side-bar.component';
 import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { AddComponent } from './employee/add/add.component';
+import { EditComponent } from './employee/edit/edit.component';
+import { DeleteComponent } from './employee/delete/delete.component';
 
 
 @NgModule({
@@ -21,7 +25,11 @@ import { RegisterComponent } from './auth/register/register.component';
     FooterComponent,
     DashboardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    EmployeeComponent,
+    AddComponent,
+    EditComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
