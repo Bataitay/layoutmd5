@@ -1218,9 +1218,9 @@ h6 {
   height: 1px;
 }
 
-.h-sidenav {
+/* .h-sidenav {
   height: calc(100vh - 370px);
-}
+} */
 
 .h-8 {
   height: 2rem;
