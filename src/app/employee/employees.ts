@@ -1,15 +1,9 @@
-export interface Employee {
+export interface Employees{
   name: any;
   age: any;
   gender: any;
   salary: any;
   image: any;
 }
-export class Employee {
-  name: any;
-  age: any;
-  gender: any;
-  salary: any;
-  image: any;
-}
+
 

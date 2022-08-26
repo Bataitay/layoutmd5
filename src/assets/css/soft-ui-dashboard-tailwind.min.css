@@ -137,14 +137,14 @@ select {
   text-transform: none;
 }
 
-button,
+/* button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
   -webkit-appearance: button;
   background-color: transparent;
   background-image: none;
-}
+} */
 
 :-moz-focusring {
   outline: auto;
@@ -1780,7 +1780,7 @@ h6 {
 }
 
 .bg-transparent {
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .bg-slate-500 {
@@ -1842,7 +1842,7 @@ h6 {
 }
 
 .bg-none {
-  background-image: none;
+  /* background-image: none; */
 }
 
 .from-transparent {
@@ -3231,7 +3231,7 @@ h6 {
 }
 
 .checked\:bg-transparent:checked {
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .checked\:bg-none:checked {
@@ -3315,7 +3315,7 @@ h6 {
 }
 
 .hover\:bg-transparent:hover {
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .hover\:bg-gray-200:hover {
@@ -3482,7 +3482,7 @@ h6 {
 }
 
 .active\:hover\:bg-transparent:hover:active {
-  background-color: transparent;
+  /* background-color: transparent; */
 }
 
 .active\:hover\:bg-white\/10:hover:active {
@@ -4019,7 +4019,7 @@ h6 {
   }
 
   .xl\:bg-transparent {
-    background-color: transparent;
+    /* background-color: transparent; */
   }
 
   .xl\:bg-white {

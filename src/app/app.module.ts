@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { createNgModule, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,10 +10,13 @@ import { SideBarComponent } from './main/side-bar/side-bar.component';
 import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { AddComponent } from './employee/add/add.component';
-import { EditComponent } from './employee/edit/edit.component';
-import { DeleteComponent } from './employee/delete/delete.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeModule } from './employee/employee.module';
+import { Routes } from '@angular/router';
+import { CategoriesModule } from './categories/categories.module';
 
 
 @NgModule({
@@ -26,14 +29,17 @@ import { DeleteComponent } from './employee/delete/delete.component';
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    EmployeeComponent,
-    AddComponent,
-    EditComponent,
-    DeleteComponent
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    EmployeeModule,
+    CategoriesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
