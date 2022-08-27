@@ -5,10 +5,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './main/dashboard/dashboard.component';
 
 const routes: Routes = [
-  {
-    path: 'employee',
-    loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule)
-  },
+  { path: '', pathMatch: 'full', redirectTo: 'dashboard' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
@@ -16,6 +13,15 @@ const routes: Routes = [
     path: 'categories',
     loadChildren: () => import('./categories/categories.module').then(m => m.CategoriesModule)
   },
+  {
+    path: 'employee',
+    loadChildren: () => import('./employee/employee.module').then(m => m.EmployeeModule)
+  },
+  {
+    path: '**',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
+  }
 
 ];
 

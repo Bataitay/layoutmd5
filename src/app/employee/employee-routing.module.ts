@@ -7,10 +7,11 @@ import { ListComponent } from './components/list.component';
 import { ShowComponent } from './components/show.component';
 
 const routes: Routes = [
-  { path: 'index', component: ListComponent },
+  // { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', component: ListComponent },
   { path: 'add', component: AddComponent },
   { path: 'edit/:id', component: EditComponent },
-  { path: 'delete', component: DeleteComponent },
+  { path: 'delete/:id', component: DeleteComponent },
   { path: 'show', component: ShowComponent },
 ];
 

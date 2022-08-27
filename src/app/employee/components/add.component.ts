@@ -4,6 +4,7 @@ import { EmployeeService } from '../employee.service';
 import { Router } from '@angular/router';
 import { Employees } from '../employees';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-add',
@@ -18,9 +19,8 @@ export class AddComponent implements OnInit {
     private fb: FormBuilder,
     private _Router: Router,
     private toastrService: ToastrService,
-  ) {
-
-  }
+    private spinner: NgxSpinnerService
+  ) { }
 
   ngOnInit(): void {
     this.employeeForm = this.fb.group({
@@ -40,18 +40,24 @@ export class AddComponent implements OnInit {
     console.log(file);
   }
   storeEmployeesData() {
-    this.empService.store(
-      this.employeeForm.value).subscribe(res => {
-        this.data = res;
-        this.employeeForm.reset();
-        this._Router.navigate(['index']);
-        if (this.data.status == true) {
-          this.toastrService.success(JSON.stringify(this.data.message), '', {
-            timeOut: 2000,
-            progressBar: true
-          })
-        }
-      })
+    this.spinner.show();
+    let employee: Employees = {
+      name: this.employeeForm.value.name,
+      age: this.employeeForm.value.age,
+      gender: this.employeeForm.value.gender,
+      salary: this.employeeForm.value.salary,
+      image: this.employeeForm.value.image
+    }
+    this.empService.store(employee).subscribe(res => {
+      this.employeeForm.reset();
+      this._Router.navigate(['/employee']);
+      if (res.status == true) {
+        this.spinner.hide();
+        this.toastrService.success(JSON.stringify(res.message))
+      } else {
+        this.toastrService.error(JSON.stringify(res.message))
+      }
+    })
   }
 
 }

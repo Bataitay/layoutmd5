@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -11,9 +11,11 @@ import { DeleteComponent } from './components/delete.component';
 import { ListComponent } from './components/list.component';
 import { ShowComponent } from './components/show.component';
 import { EmployeesRoutingModule } from './employee-routing.module';
-
-
-
+import { AppRoutingModule } from '../app-routing.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
+interface NgxSpinnerConfig {
+  type?: string;
+}
 
 @NgModule({
   declarations: [
@@ -24,14 +26,18 @@ import { EmployeesRoutingModule } from './employee-routing.module';
     ShowComponent
   ],
   imports: [
-    BrowserModule,
+    CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
-    BrowserAnimationsModule,
+    // BrowserAnimationsModule,
     FormsModule,
-    EmployeesRoutingModule
+    EmployeesRoutingModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
 
-  ]
+
+  ],
+  providers: [],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EmployeeModule { }

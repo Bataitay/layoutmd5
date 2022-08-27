@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse  } from '@angular/common/http';
 import {  Employees } from './employees';
 import { Observable } from 'rxjs';
-
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -30,16 +31,41 @@ export class EmployeeService {
       formData.append('gender', employee.gender);
       formData.append('salary', employee.salary);
       formData.append('image', employee.image);
-    return this.http.post<Employees[]>(this.storeEmployee, formData);
+      console.log(formData);
+    return this.http.post<Employees[]>(this.storeEmployee, formData).pipe(
+      catchError(this.handleError)
+    );
   }
   getDataId(id: any): Observable<any>{
-    return this.http.get<Employees[]>(this.getEmployeeId +id);
+    return this.http.get<Employees[]>(this.getEmployeeId +id).pipe(
+      catchError(this.handleError)
+    );
   }
   delete(id:any){
-    return this.http.delete<Employees[]>(this.deleteEmployee +id);
+    return this.http.delete<Employees[]>(this.deleteEmployee +id).pipe(
+      catchError(this.handleError)
+    );
   }
-  update( employee: Employees, id:any): Observable<any>{
-    return this.http.put<Employees[]>(this.editEmployeeId + id, employee);
+  update(employee: Employees, id:any): Observable<any>{
+      var formData = new FormData();
+      formData.append('name', employee.name);
+      formData.append('age', employee.age);
+      formData.append('gender', employee.gender);
+      formData.append('salary', employee.salary);
+      formData.append('image', employee.image);
+      console.log(formData);
+    return this.http.put<Employees[]>(this.editEmployeeId + id, formData).pipe(
+      catchError(this.handleError)
+    );
+  }
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+
+      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error}`);
+    }
+    return throwError('Something bad happened. Please try again later.');
   }
 }
 

@@ -1,4 +1,4 @@
-import { createNgModule, NgModule } from '@angular/core';
+import { createNgModule, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,8 +17,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeModule } from './employee/employee.module';
 import { Routes } from '@angular/router';
 import { CategoriesModule } from './categories/categories.module';
-
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+interface NgxSpinnerConfig {
+  type?: string;
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,12 +38,22 @@ import { CategoriesModule } from './categories/categories.module';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot(
+      {
+        timeOut:4000,
+        positionClass: 'toast-top-right',
+        preventDuplicates: true
+      }
+    ),
     BrowserAnimationsModule,
     EmployeeModule,
-    CategoriesModule
+    CategoriesModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class AppModule { }

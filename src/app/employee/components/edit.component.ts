@@ -11,9 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditComponent implements OnInit {
   editEmployeeForm !: FormGroup;
-  data: any;
   id: any;
-  employees:any;
   image: any;
   constructor(
     private empService: EmployeeService,
@@ -22,7 +20,6 @@ export class EditComponent implements OnInit {
     private toastrService: ToastrService,
     private fb: FormBuilder
     ) { }
-
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.empService.getDataId(this.id).subscribe(res => {
@@ -41,7 +38,6 @@ export class EditComponent implements OnInit {
       salary: [''],
       image: [null],
     });
-
   }
   uploadImageEmployee(event: any){
     const file = event.target.files ? event.target.files[0] : '';
@@ -52,11 +48,23 @@ export class EditComponent implements OnInit {
     console.log(file);
   }
   updateEmployeesData(){
-    const id =this.id;
-    this.empService.update(
-      this.editEmployeeForm.value, id ).subscribe(res => {
-      this._Router.navigate(['index']);
-
+    const id = this.id;
+    let employee: Employees = {
+      name: this.editEmployeeForm.value.name,
+      age: this.editEmployeeForm.value.age,
+      gender: this.editEmployeeForm.value.gender,
+      salary: this.editEmployeeForm.value.salary,
+      image: this.editEmployeeForm.value.image,
+    }
+    this.empService.update(employee, +id ).subscribe(res => {
+      console.log(res);
+      // this.editEmployeeForm.reset();
+      this._Router.navigate(['/employee']);
+      if (res.status == true) {
+        this.toastrService.success(JSON.stringify(res.message))
+        }else{
+          this.toastrService.error(JSON.stringify(res.message))
+        }
     })
   }
 
