@@ -8,7 +8,7 @@ import { ShowComponent } from './components/show.component';
 
 const routes: Routes = [
   { path: '', component: IndexComponent },
-  { path: '/add', component: AddComponent },
+  { path: 'add', component: AddComponent },
   { path: 'edit', component: EditComponent },
   { path: 'delete', component: DeleteComponent },
   { path: 'show', component: ShowComponent },

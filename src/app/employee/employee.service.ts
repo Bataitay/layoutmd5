@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class EmployeeService {
+  employees: Employees[]=[];
+  id:any;
   getAllEmployees = 'http://127.0.0.1:8000/api/index';
   storeEmployee = 'http://127.0.0.1:8000/api/store';
   deleteEmployee = 'http://127.0.0.1:8000/api/delete/';
@@ -21,17 +23,13 @@ export class EmployeeService {
   index() {
     return this.http.get<Employees[]>(this.getAllEmployees);
   }
-  store( name: any,
-    age: any,
-    gender: any,
-    salary: any,
-    image: File): Observable<any>{
+  store( employee: Employees ): Observable<any>{
       var formData = new FormData();
-      formData.append('name', name);
-      formData.append('age', age);
-      formData.append('gender', gender);
-      formData.append('salary', salary);
-      formData.append('image', image);
+      formData.append('name', employee.name);
+      formData.append('age', employee.age);
+      formData.append('gender', employee.gender);
+      formData.append('salary', employee.salary);
+      formData.append('image', employee.image);
     return this.http.post<Employees[]>(this.storeEmployee, formData);
   }
   getDataId(id: any): Observable<any>{
@@ -40,4 +38,8 @@ export class EmployeeService {
   delete(id:any){
     return this.http.delete<Employees[]>(this.deleteEmployee +id);
   }
+  update( employee: Employees, id:any): Observable<any>{
+    return this.http.put<Employees[]>(this.editEmployeeId + id, employee);
+  }
 }
+

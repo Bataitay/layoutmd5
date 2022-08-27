@@ -9,7 +9,7 @@ import { ShowComponent } from './components/show.component';
 const routes: Routes = [
   { path: 'index', component: ListComponent },
   { path: 'add', component: AddComponent },
-  { path: 'edit', component: EditComponent },
+  { path: 'edit/:id', component: EditComponent },
   { path: 'delete', component: DeleteComponent },
   { path: 'show', component: ShowComponent },
 ];

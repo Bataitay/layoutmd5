@@ -40,18 +40,8 @@ export class AddComponent implements OnInit {
     console.log(file);
   }
   storeEmployeesData() {
-    let employee: Employees = {
-      name: this.employeeForm.value.name,
-      age: this.employeeForm.value.age,
-      gender: this.employeeForm.value.gender,
-      salary: this.employeeForm.value.salary,
-      image: this.employeeForm.value.image
-    }
-    this.empService.store(this.employeeForm.value.name,
-      this.employeeForm.value.age,
-      this.employeeForm.value.gender,
-      this.employeeForm.value.salary,
-      this.employeeForm.value.image).subscribe(res => {
+    this.empService.store(
+      this.employeeForm.value).subscribe(res => {
         this.data = res;
         this.employeeForm.reset();
         this._Router.navigate(['index']);
