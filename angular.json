@@ -24,7 +24,6 @@
             ],
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
-              "node_modules/ngx-spinner/animations/ball-Timer.css",
               "src/styles.css"
             ],
             "scripts": []
